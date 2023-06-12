@@ -18,7 +18,7 @@ class CommentSection extends Component
         $post = Post::findOrFail($this->postId);
         $comments = $post->comments()
             ->with(['comments', 'user'])
-            ->paginate(5);
+            ->paginate(2);
 
         return view('livewire.comment-section', compact('comments', 'post'));
     }

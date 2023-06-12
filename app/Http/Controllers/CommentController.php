@@ -41,8 +41,10 @@ class CommentController extends Controller
         return view('pages.comments.edit', compact('post', 'comment'));
     }
 
-    public function update(CommentStoreRequest $request, Comment $comment): RedirectResponse
+    public function update(CommentStoreRequest $request, Post $post, $comment): RedirectResponse
     {
+        $comment = $post->comments()->findOrFail($comment);
+
         abort_if($comment->user_id !== auth()->id(), 403);
 
         $comment->fill($request->validated())->save();

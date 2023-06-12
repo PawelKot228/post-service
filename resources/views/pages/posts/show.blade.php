@@ -26,12 +26,12 @@
 
         <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700">
 
-        <div>
+        <div class="mb-6">
             <h3 class="text-xl md:text-2xl font-semibold mb-2">{{ __('Gallery') }}</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach($post->gallery as $image)
                     <div>
-                        <img class="h-auto max-w-full rounded-lg"
+                        <img class="w-full h-96 rounded-lg object-cover"
                              src="{{ $image->url }}"
                              alt=""
                         >

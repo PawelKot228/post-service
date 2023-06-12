@@ -7,7 +7,12 @@
             <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">{{ __('Discussion') }} ({{ $post->comments_count }})</h2>
         </div>
 
-        <x-forms.comment :post="$post" >
+
+
+        <x-forms.comment
+            :post="$post"
+            :action="route('posts.comments.store', [$post])"
+        >
             <x-button>
                 {{ __('Post comment') }}
             </x-button>

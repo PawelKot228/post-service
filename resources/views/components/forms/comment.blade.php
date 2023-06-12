@@ -1,9 +1,11 @@
-@props(['post' => null])
+@props([
+    'comment' => null,
+])
 
 <form
     class="mb-6"
-    action="{{ route('posts.comments.store', [$post]) }}"
     method="POST"
+    {!! $attributes !!}
 >
     @csrf
 
@@ -15,7 +17,7 @@
             rows="6" placeholder="{{ __('Write a comment...') }}"
             required
         >
-            {{ old('text') }}
+            {{ $comment?->text ?? old('text') }}
         </x-textarea>
         <x-input-error for="text" class="mt-2" />
     </div>

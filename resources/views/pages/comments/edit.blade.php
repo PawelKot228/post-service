@@ -14,7 +14,7 @@
                     {{ __('Save') }}
                 </x-button>
                 <form class="delete-action inline-block" method="POST"
-                      action="{{ route('posts.destroy', [$post]) }}"
+                      action="{{ route('posts.comments.destroy', [$post->id, $comment->id]) }}"
                 >
                     @csrf
                     @method('DELETE')
@@ -28,29 +28,13 @@
 
         <div class="flex">
             <div class="w-1/2 px-4 py-2">
-                <x-card-simple>
-                    <x-slot:header>
-                        {{ __('Post details') }}
-                    </x-slot:header>
-
-                    <x-forms.post action="{{ route('posts.update', [$post]) }}" :post="$post" >
-                        @method('PUT')
-                    </x-forms.post>
-                </x-card-simple>
-            </div>
-            <div class="w-1/2 px-4 py-2">
-
-                <x-card-simple>
-                    <x-slot:header>
-                        {{ __('Gallery') }}
-                    </x-slot:header>
-
-                    <livewire:file-uploader
-                        source-id="{{ $post->id }}"
-                        source-type="{{ $post->getTable() }}"
-                    />
-                </x-card-simple>
-
+                <x-forms.comment
+                    id="post-form"
+                    :comment="$comment"
+                    :action="route('posts.comments.update', [$post->id, $comment->id])"
+                >
+                    @method('PUT')
+                </x-forms.comment>
             </div>
         </div>
     </x-page-section>
